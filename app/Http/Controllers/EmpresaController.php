@@ -22,7 +22,15 @@ class EmpresaController extends Controller
             'id' => $empresa->getId(),
             'nome' => $empresa->getNome(),
             'email' => $empresa->getEmail(),
-            'telefone' => $empresa->getTelefone()
+            'telefone' => $empresa->getTelefone(),
+            'categorias' => array_map(fn($categoria) => [
+                'id' => $categoria->getId(),
+                'nome' => $categoria->getNome(),
+            ], $empresa->getCategorias()->toArray()),
+            'enderecos' => array_map(fn($endereco) => [
+                'id' => $endereco->getId(),
+                'logradouro' => $endereco->getLogradouro(),
+            ], $empresa->getEnderecos()->toArray()),
         ], $empresas);
 
         return response()->json($data);
@@ -40,7 +48,15 @@ class EmpresaController extends Controller
             'id' => $empresa->getId(),
             'nome' => $empresa->getNome(),
             'email' => $empresa->getEmail(),
-            'telefone' => $empresa->getTelefone()
+            'telefone' => $empresa->getTelefone(),
+            'categorias' => array_map(fn($categoria) => [
+                'id' => $categoria->getId(),
+                'nome' => $categoria->getNome(),
+            ], $empresa->getCategorias()->toArray()),
+            'enderecos' => array_map(fn($endereco) => [
+                'id' => $endereco->getId(),
+                'logradouro' => $endereco->getLogradouro(),
+            ], $empresa->getEnderecos()->toArray()),
         ]);
     }
 }
